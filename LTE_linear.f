@@ -1,9 +1,9 @@
 C******************************
 C Laplace Tidal Equations, with Rayleigh Dissipation (linear)
 C
-C As discussed in "Solving the Laplace Tidal Equations using a General-
-C    purpose Finite Element Program," Sewell and Manea, Computers and
-C    Geosciences, v???, pp??.
+C As discussed in "Solving the Laplace Tidal Equations using Freely
+C    Available, Easily Extensible Finite Element Software," Sewell and
+C    Manea, Computers and Geosciences, v???, pp??.-
 C
 C If run without changes, this program produces the plots seen in
 C    Figure 4 of that article, but users can easily modify it to solve

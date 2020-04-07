@@ -1,9 +1,9 @@
 C******************************
 C Laplace Tidal Equations, with Bottom Drag (nonlinear)
 C
-C As discussed in "Solving the Laplace Tidal Equations using a General-
-C    purpose Finite Element Program," Sewell and Manea, Computers and
-C    Geosciences, v???, pp??.
+C As discussed in "Solving the Laplace Tidal Equations using Freely
+C    Available, Easily Extensible Finite Element Software," Sewell and
+C    Manea, Computers and Geosciences, v???, pp??.-
 C
 C If run without changes, this program produces the result seen in line 1
 C    of Table 2 of that article and if 'mode' changed to 2, it produces
