@@ -17,6 +17,12 @@ C U,V, ETA and Q at 0%,25%,50%,75%,100% for the last period, and two plots
 C with the geographical distribution of tidal dissipation.  In these 
 C plots, P1=longitude, P2=latitude.
 C
+C To get MATLAB plots, remove all "C!" from LTEice_linear.f and pde2d.m and 
+C pde2d.rdm will be produced when you run runpde2d.  If you run MATLAB
+C program pde2d.m it will read data file pde2d.rdm and produce plots,
+C but way too many plots, replace pde2d.m by pde2d_LTE.m, available at
+C www.pde2d.com.
+C
 C******************************
 C
 C     **************************                                              

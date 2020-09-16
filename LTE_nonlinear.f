@@ -18,6 +18,12 @@ C U,V and ETA at 0%,25%,50%,75%,100% for the last period, and two plots
 C with the geographical distribution of tidal dissipation.  In these 
 C plots, P1=longitude, P2=latitude.
 C
+C To get MATLAB plots, remove all "C!" from LTE_nonlinear.f and pde2d.m and 
+C pde2d.rdm will be produced when you run runpde2d.  If you run MATLAB
+C program pde2d.m it will read data file pde2d.rdm and produce plots,
+C but way too many plots, replace pde2d.m by pde2d_LTE.m, available at
+C www.pde2d.com.
+C
 C******************************
 C
 C     **************************                                              
@@ -226,7 +232,7 @@ C     ++++++++++++++++++++++++++ END OF "FINE PRINT" +++++++++++++++++++++++++#
 C##############################################################################
 C???????????
 C  *** Titan data  ***
-C  revolution frequency (/sec)
+C  revolution frequency (radians/sec)
       Omega = 0.455 D-5                                                   
       PERIOD = 2.*pi/Omega
 C  bottom drag coefficient
@@ -249,7 +255,7 @@ C  mode = 2 for obliquity tidal heating
 C   Love numbers
       rk2 = 0.120d0
       rh2 = 0.221d0
-C  Rayleigh dissipation coefficient 
+C  Rayleigh dissipation coefficient (1/sec)
       alpha = 0.0
 C##############################################################################
 
@@ -645,7 +651,7 @@ C     Enter a title, WITHOUT quotation marks.  A maximum of 40 characters     #
 C     are allowed.  The default is no title.                                  #
 C##############################################################################
       TITLE = ' '                                                              
-      TITLE = 'U                     '                       
+      TITLE = 'U (m/sec)             '                       
       call dtdprx(tout8z,nsave,iset1,iset2,isinc)                              
       do 78757 is8z=iset1,iset2,isinc                                          
       call dtdplo(p1out8z,p2out8z,p3out8z,uout(0,0,ivara8z,ivarb8z,is8z)       
@@ -715,7 +721,7 @@ C     Enter a title, WITHOUT quotation marks.  A maximum of 40 characters     #
 C     are allowed.  The default is no title.                                  #
 C##############################################################################
       TITLE = ' '                                                              
-      TITLE = 'V                  '               
+      TITLE = 'V (m/sec)         '               
       call dtdprx(tout8z,nsave,iset1,iset2,isinc)                              
       do 78758 is8z=iset1,iset2,isinc                                          
       call dtdplo(p1out8z,p2out8z,p3out8z,uout(0,0,ivara8z,ivarb8z,is8z)       
@@ -785,7 +791,7 @@ C     Enter a title, WITHOUT quotation marks.  A maximum of 40 characters     #
 C     are allowed.  The default is no title.                                  #
 C##############################################################################
       TITLE = ' '                                                              
-      TITLE = 'ETA                                     '                       
+      TITLE = 'ETA (m)                                 '                       
       call dtdprx(tout8z,nsave,iset1,iset2,isinc)                              
       do 78759 is8z=iset1,iset2,isinc                                          
       call dtdplo(p1out8z,p2out8z,p3out8z,uout(0,0,ivara8z,ivarb8z,is8z)       
