@@ -245,7 +245,7 @@ C  ocean depth (m)
 C  eccentricity of orbit
       e = 0.0047 d0
 C  obliquity 
-      theta0 = 0.0               
+      theta0 = -0.00045*pi/180.d0               
 C  surface graviational acceleration (m/sec^2)
       g = 0.11 d0
 C  mode = 1 for eccentricity tidal heating

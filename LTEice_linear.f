@@ -6,7 +6,7 @@ C    Available, Easily Extensible Finite Element Software," Sewell and
 C    Manea, Computers and Geosciences, v???, pp??.-
 C
 C If run without changes, this program produces the plots seen in
-C    Figure 6 of that article, but users can easily modify it to solve
+C    Figure 7 of that article, but users can easily modify it to solve
 C    many other tidal dissipation problems (with ice cap).  Parameters 
 C    most likely to be modified by users are preceded by C???????????
 C
@@ -149,7 +149,7 @@ C   Work through 10*NPROB periods.  The first run, delete restart file
 C      "pde2d.res" before starting.  If you need to rerun (sometimes it takes
 C      many periods for convergence) it will start from the end of the last 
 C      run, if you do not delete "pde2d.res".
-      NPROB = 2                                                               
+      NPROB = 10                                                               
       do 78755 iprob=1,nprob                                                   
 C##############################################################################
 C     PDE2D solves the time-dependent system (note: U,F,G,U0 may be vectors,  #
@@ -242,7 +242,7 @@ C  ocean depth (m)
 C  eccentricity of orbit
       e = 0.0047D0
 C  obliquity 
-      theta0 = 0.0           
+      theta0 = -0.00045*pi/180.d0           
 C  surface graviational acceleration (m/sec^2)
       g = 0.11 d0
 C  mode = 1 for eccentricity tidal heating
@@ -259,10 +259,8 @@ C  Ice cap thickness (m)
 C  Poisson ratio for ice
       Rnu    =                                                                 
      & 0.33                                                                    
-C  bottom drag coefficient 
-C  CAUTION: If Cd > 0, you must change LINEAR and NOUPDT to .FALSE.
-C           and FDIFF to .TRUE.   You may optionally change ADAPT.
-      Cd = 0. d0 
+C  Cd must remain 0 for this program
+      Cd = 0
 C
       betinv =                                                                 
      & EM*hi/RT**2                                                          
@@ -397,11 +395,7 @@ C     + decrease correspondingly.                                            +#
 C     ++++++++++++++++++++++++++ END OF "FINE PRINT" +++++++++++++++++++++++++#
 C##############################################################################
       ADAPT = .FALSE.                                                          
-      IF (IPROB.eq.1) then
-         TOLER(1) = 1.D20
-      ELSE
-         TOLER(1) = 0.05                                                      
-      ENDIF
+      TOLER(1) = 0.05d0
 C##############################################################################
 C     If you don't want to read the FINE PRINT, it is safe (though possibly   #
 C     very inefficient) to enter 'no'.                                        #
@@ -1216,8 +1210,7 @@ C     ++++++++++++++++++++++++++ END OF "FINE PRINT" +++++++++++++++++++++++++#
 C##############################################################################
 C                                                  INTEGRAL DEFINED            
       if (kint8z.eq.    1) yd8z =
-     & Cd*sigma*(u**2+v**2)**1.5*RT**2*cos(y)
-     & + alpha*sigma*h0*(u**2+v**2)*RT**2*cos(y)
+     & alpha*sigma*h0*(u**2+v**2)*RT**2*cos(y)
 C##############################################################################
 C     Enter FORTRAN expressions for the functions whose integrals are to be   #
 C     calculated and printed.  They may be functions of                       #
@@ -1311,8 +1304,8 @@ C                                                  C(1,4) DEFINED
      & 0                                                                       
 C                                                  F1 DEFINED
       if (i8z.eq.    1) yd8z =                                                 
-     &  2*Omega*V*sin(y) - Cd/h0*sqrt(u**2+v**2)*u              
-     & -alpha*U - g/(RT*cos(y))*ETAx + POTx/(RT*cos(y))  
+     &  2*Omega*V*sin(y) - alpha*U 
+     & - g/(RT*cos(y))*ETAx + POTx/(RT*cos(y))  
      & -1.0/sigma/(RT*cos(y))*Qx
 C                                                  C(2,1) DEFINED              
       if (i8z.eq. -201) yd8z =                                                 
@@ -1328,9 +1321,8 @@ C                                                  C(2,4) DEFINED
      & 0                                                                       
 C                                                  F2 DEFINED                  
       if (i8z.eq.    2) yd8z =                                                 
-     & -2*Omega*U*sin(y) - Cd/h0*sqrt(u**2+v**2)*v                  
-     & -alpha*V - g/RT*ETAy + POTy/RT
-     & - 1.0/sigma/RT*Qy
+     & -2*Omega*U*sin(y) - alpha*V 
+     & - g/RT*ETAy + POTy/RT - 1.0/sigma/RT*Qy
 C                                                  C(3,1) DEFINED              
       if (i8z.eq. -301) yd8z =                                                 
      & 0                                                                       
@@ -1675,8 +1667,7 @@ C##############################################################################
 C        DEFINE UPRINT(*),UXPRINT(*),UYPRINT(*) HERE:                          
       UXPRINT(1) = SINT(1)
       UYPRINT(1) =
-     & Cd*sigma*(u**2+v**2)**1.5
-     & + alpha*sigma*h0*(u**2+v**2)
+     & alpha*sigma*h0*(u**2+v**2)
       return                                                                   
       end                                                                      
                                                                                
