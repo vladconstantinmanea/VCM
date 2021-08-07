@@ -3,7 +3,7 @@ C Laplace Tidal Equations, with bottom drag (nonlinear), with ice cap
 C
 C As discussed in "Solving the Laplace Tidal Equations using Freely
 C    Available, Easily Extensible Finite Element Software," Sewell and
-C    Manea, Computers and Geosciences, v???, pp??.-
+C    Manea, Computers and Geosciences, v155, October 2021. 
 C
 C If run without changes, this program produces the results for ocean
 C    depth = 100m in Figure 8a of that article, but users can easily

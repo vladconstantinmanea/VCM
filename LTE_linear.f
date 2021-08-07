@@ -3,7 +3,7 @@ C Laplace Tidal Equations, with Rayleigh Dissipation (linear)
 C
 C As discussed in "Solving the Laplace Tidal Equations using Freely
 C    Available, Easily Extensible Finite Element Software," Sewell and
-C    Manea, Computers and Geosciences, v???, pp??.-
+C    Manea, Computers and Geosciences, v155, October 2021. 
 C
 C If run without changes, this program produces the plots seen in
 C    Figure 4 of that article, but users can easily modify it to solve
